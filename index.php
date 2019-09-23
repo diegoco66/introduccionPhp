@@ -1,6 +1,24 @@
 <?php
     $lastName = 'Correa';
     $name = "Diego $lastName";//Esto se puede hacer solo cuando es comilla doble
+    $tabla = <<<EOP
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hola</th>
+                <th>$lastName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+    </table>
+EOP;
+    //La sintaxis de arriba es de la forma Heredoc, y corresponde a una forma de comilla doble pero permitiendo múltiples líneas
+
 ?>
 
 <!doctype html>
@@ -36,6 +54,7 @@
         </ul>
       </div>
     </div>
+      <?php echo $tabla ?>
     <div class="row">
       <div class="col">
         <h2 class="border-bottom-gray" >Carrer Summary</h2>
