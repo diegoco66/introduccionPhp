@@ -1,4 +1,7 @@
 <?php
+    include('jobs.php');
+    require_once('funciones.php');
+
     $lastName = 'Correa';
     $name = "Diego $lastName";//Esto se puede hacer solo cuando es comilla doble
     $limitMonths = 12;
@@ -19,65 +22,6 @@
     </table>
 EOP;
     //La sintaxis de arriba es de la forma Heredoc, y corresponde a una forma de comilla doble pero permitiendo múltiples líneas
-
-    $jobs = [
-        [
-            'title' => 'PHP Developer',
-            'description' => 'This is an awesome job!!!',
-            'visible' => true,
-            'months' => 39
-        ],
-        [
-            'title' => 'Python Dev',
-            'description' => 'This is an awesome job!!!',
-            'visible' => false,
-            'months' => 4
-        ],
-        [
-            'title' => 'DevOps',
-            'description' => 'This is an awesome job!!!',
-            'visible' => false,
-            'months' => 15
-        ],
-        [
-            'title' => 'Node Dev',
-            'description' => 'This is an awesome job!!!',
-            'visible' => true,
-            'months' => 6
-        ],
-        [
-            'title' => 'Ruby',
-            'description' => 'This is an awesome job!!!',
-            'visible' => true,
-            'months' => 18
-        ]
-    ];
-
-    function printJob($title, $description, $months) {
-        echo '<li class="work-position">';
-        echo '<h5>'.$title.'</h5>';
-        echo '<p>'.$description.'</p>';
-        echo '<p>'.getDuration($months).'</p>';
-        echo '<strong>Achievements:</strong>';
-        echo '<ul>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-        echo '</ul>';
-        echo '</li>';
-    }
-
-    function getDuration($months) {
-        $response = "";
-        $years = floor($months /12);
-        $extraMonths = $months % 12;
-
-        if ($years > 0) {
-            $response .= $years . " ";
-            $response .= ($years != 1) ? " años " : " año ";
-        }
-        return "$response $extraMonths meses";
-    }
 
 ?>
 
