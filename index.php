@@ -1,6 +1,7 @@
 <?php
     $lastName = 'Correa';
     $name = "Diego $lastName";//Esto se puede hacer solo cuando es comilla doble
+    $limitMonths = 12;
     $tabla = <<<EOP
     <table border="1">
         <thead>
@@ -22,13 +23,29 @@ EOP;
     $jobs = [
         [
             'title' => 'PHP Developer',
-            'description' => 'This is an awesome job!!!'
+            'description' => 'This is an awesome job!!!',
+            'visible' => true,
+            'months' => 6
         ],
         [
-            'title' => 'Python Dev'
+            'title' => 'Python Dev',
+            'visible' => false,
+            'months' => 4
         ],
         [
-            'title' => 'DevOps'
+            'title' => 'DevOps',
+            'visible' => false,
+            'months' => 3
+        ],
+        [
+            'title' => 'Node Dev',
+            'visible' => true,
+            'months' => 2
+        ],
+        [
+            'title' => 'Ruby',
+            'visible' => true,
+            'months' => 3
         ]
     ];
 
@@ -82,36 +99,27 @@ EOP;
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <li class="work-position">
-              <h5><?php echo $jobs[0]['title'] ?></h5>
-              <p><?php echo $jobs[0]['description'] ?></p>
-              <strong>Achievements:</strong>
-              <ul>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-              </ul>
-            </li>
-            <li class="work-position">
-                <h5><?php echo $jobs[1]['title'] ?></h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
-              <li class="work-position">
-                  <h5><?php echo $jobs[2]['title'] ?></h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                  <strong>Achievements:</strong>
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  </ul>
-                </li>
+              <?php
+              $totalMonths = 0;
+              for ($i = 0; $i < count($jobs); $i++) {
+                  $totalMonths = $totalMonths + $jobs[$i]['months'];
+                  if ($jobs[$i]['visible'] == false) {
+                      continue;
+                  }
+                      ?>
+                      <li class="work-position">
+                          <h5><?php echo $jobs[$i]['title'] ?></h5>
+                          <p><?php echo $jobs[$i]['description'] ?></p>
+                          <strong>Achievements:</strong>
+                          <ul>
+                              <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                              <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                              <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                          </ul>
+                      </li>
+                      <?php
+              }
+                  ?>
           </ul>
         </div>
         <div>
