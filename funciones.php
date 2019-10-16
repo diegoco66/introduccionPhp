@@ -1,10 +1,10 @@
 <?php
 
-function printJob($title, $description, $months) {
+function printJob($job) {
     echo '<li class="work-position">';
-    echo '<h5>'.$title.'</h5>';
-    echo '<p>'.$description.'</p>';
-    echo '<p>'.getDuration($months).'</p>';
+    echo '<h5>'.$job->getTitle().'</h5>';
+    echo '<p>'.$job->description.'</p>';
+    echo '<p>'.getDuration($job->months).'</p>';
     echo '<strong>Achievements:</strong>';
     echo '<ul>';
     echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';

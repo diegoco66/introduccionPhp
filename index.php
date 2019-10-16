@@ -1,4 +1,5 @@
 <?php
+    include('Job.php');
     include('jobs.php');
     require_once('funciones.php');
 
@@ -74,13 +75,11 @@ EOP;
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
               <?php
-              $totalMonths = 0;
               for ($i = 0; $i < count($jobs); $i++) {
-                  $totalMonths = $totalMonths + $jobs[$i]['months'];
-                  if ($jobs[$i]['visible'] == false) {
+                  if ($jobs[$i]->visible == false) {
                       continue;
                   }
-                  echo printJob($jobs[$i]['title'], $jobs[$i]['description'], $jobs[$i]['months']);
+                  echo printJob($jobs[$i]);
               }
                   ?>
           </ul>
