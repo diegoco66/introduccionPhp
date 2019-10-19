@@ -1,5 +1,4 @@
 <?php
-    include('Job.php');
     include('jobs.php');
     require_once('funciones.php');
 
@@ -79,13 +78,20 @@ EOP;
                   if ($jobs[$i]->visible == false) {
                       continue;
                   }
-                  echo printJob($jobs[$i]);
+                  echo printElement($jobs[$i]);
               }
                   ?>
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
+            <ul>
+                <?php
+                for ($i = 0; $i < count($projects); $i++) {
+                    echo printElement($projects[$i]);
+                }
+                ?>
+            </ul>
             <div class="project">
                 <h5>Project X</h5>
                 <div class="row">

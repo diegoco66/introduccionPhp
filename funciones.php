@@ -1,6 +1,6 @@
 <?php
 
-function printJob($job) {
+function printElement($job) {
     echo '<li class="work-position">';
     echo '<h5>'.$job->getTitle().'</h5>';
     echo '<p>'.$job->description.'</p>';
