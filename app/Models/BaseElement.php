@@ -1,6 +1,8 @@
 <?php
 
-class BaseElement {
+require_once 'Printable.php';
+
+class BaseElement implements Printable {
     //Con la palabra reservada protected podemos acceder a esta variable solo desde su propia clase o desde
     //Las clases que heredan de esta.
     protected $title;
@@ -35,5 +37,9 @@ class BaseElement {
             $response .= ($years != 1) ? " años " : " año ";
         }
         return "$response $extraMonths meses";
+    }
+
+    public function getDescription() {
+        return $this->description;
     }
 }

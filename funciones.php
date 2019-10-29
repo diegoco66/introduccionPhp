@@ -1,9 +1,11 @@
 <?php
 
-function printElement($job) {
+require_once 'app/Models/Printable.php';
+
+function printElement(Printable $job) {
     echo '<li class="work-position">';
     echo '<h5>'.$job->getTitle().'</h5>';
-    echo '<p>'.$job->description.'</p>';
+    echo '<p>'.$job->getDescription().'</p>';
     echo '<p>'.$job->getDurationAsString().'</p>';
     echo '<strong>Achievements:</strong>';
     echo '<ul>';

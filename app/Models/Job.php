@@ -9,9 +9,10 @@ class Job extends BaseElement {
         parent::__construct($newTitle, $description);
     }
 
-    public function getDurationAsString() {
+    public function getDurationAsString()
+    {
         $response = "";
-        $years = floor($this->months /12);
+        $years = floor($this->months / 12);
         $extraMonths = $this->months % 12;
 
         if ($years > 0) {
