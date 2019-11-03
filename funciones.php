@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app/Models/Printable.php';
+use App\Models\Printable;
 
 function printElement(Printable $job) {
     echo '<li class="work-position">';

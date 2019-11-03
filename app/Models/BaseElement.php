@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Printable.php';
+namespace App\Models;
+
+use App\Models\Printable;
 
 class BaseElement implements Printable {
     //Con la palabra reservada protected podemos acceder a esta variable solo desde su propia clase o desde

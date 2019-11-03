@@ -1,7 +1,8 @@
 <?php
 
-require 'app/Models/Job.php';
-require 'app/Models/Project.php';
+require_once  'vendor/autoload.php';
+
+use App\Models\{Job, Project};
 
 $job1 = new Job('PHP Developer', 'This is an awesome job!!!');
 $job1->months = 39;
