@@ -1,11 +1,12 @@
 <?php
-    include('jobs.php');
-    require_once('funciones.php');
+    require_once  'vendor/autoload.php';
 
-    $lastName = 'Correa';
-    $name = "Diego $lastName";//Esto se puede hacer solo cuando es comilla doble
-    $limitMonths = 12;
-    $tabla = <<<EOP
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$lastName = 'Correa';
+$name = "Diego $lastName";//Esto se puede hacer solo cuando es comilla doble
+$limitMonths = 12;
+$tabla = <<<EOP
     <table border="1">
         <thead>
             <tr>
@@ -21,8 +22,30 @@
         </tbody>
     </table>
 EOP;
-    //La sintaxis de arriba es de la forma Heredoc, y corresponde a una forma de comilla doble pero permitiendo múltiples líneas
+//La sintaxis de arriba es de la forma Heredoc, y corresponde a una forma de comilla doble pero permitiendo múltiples líneas
 
+
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'cursophp',
+    'username'  => 'root',
+    'password'  => 'secreto237',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+]);
+
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();
+
+require_once('funciones.php');
+include('jobs.php');
 ?>
 
 <!doctype html>
@@ -75,9 +98,6 @@ EOP;
           <ul>
               <?php
               for ($i = 0; $i < count($jobs); $i++) {
-                  if ($jobs[$i]->visible == false) {
-                      continue;
-                  }
                   echo printElement($jobs[$i]);
               }
                   ?>
@@ -88,7 +108,7 @@ EOP;
             <ul>
                 <?php
                 for ($i = 0; $i < count($projects); $i++) {
-                    echo printElement($projects[$i]);
+                    //echo printElement($projects[$i]);
                 }
                 ?>
             </ul>
