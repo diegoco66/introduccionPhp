@@ -108,7 +108,7 @@ include('jobs.php');
             <ul>
                 <?php
                 for ($i = 0; $i < count($projects); $i++) {
-                    //echo printElement($projects[$i]);
+                    echo printElement($projects[$i]);
                 }
                 ?>
             </ul>
