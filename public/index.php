@@ -41,7 +41,14 @@ $map->get('index', '/introduccionPhp/', [
     'controller' => 'App\Controllers\IndexController',
     'action' => 'indexAction'
 ]);
-$map->get('addJob', '/introduccionPhp/jobs/add', '../addJob.php');
+$map->get('addJob', '/introduccionPhp/jobs/add', [
+    'controller' => 'App\Controllers\JobsController',
+    'action' => 'getAddJobAction'
+]);
+$map->post('saveJob', '/introduccionPhp/jobs/add', [
+    'controller' => 'App\Controllers\JobsController',
+    'action' => 'getAddJobAction'
+]);
 $map->get('addProject', '/introduccionPhp/projects/add', '../addProject.php');
 
 $matcher = $routerContainer->getMatcher();
@@ -69,5 +76,5 @@ if (!$route) {
     $actionName = $handlerData['action'];
 
     $controller = new $controllerName;
-    $controller->$actionName();
+    $controller->$actionName($request);
 }
