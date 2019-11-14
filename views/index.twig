@@ -24,7 +24,7 @@
         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
       </div>
       <div class="col">
-        <h1><?php echo $name ?></h1>
+        <h1>{{ name }}</h1>
         <h2>PHP Developer</h2>
         <ul>
           <li>Mail: hector@mail.com</li>
@@ -34,7 +34,7 @@
         </ul>
       </div>
     </div>
-      <?php echo $tabla ?>
+      {{ tabla }}
     <div class="row">
       <div class="col">
         <h2 class="border-bottom-gray" >Carrer Summary</h2>
@@ -49,21 +49,37 @@
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-              <?php
-              for ($i = 0; $i < count($jobs); $i++) {
-                  echo printElement($jobs[$i]);
-              }
-                  ?>
+              {% for job in jobs %}
+                  <li class="work-position">
+                      <h5>{{ job.title }}</h5>
+                      <p>{{ job.description }}</p>
+                      <p>{{ job.months }}</p>
+                      <strong>Achievements:</strong>
+                      <ul>
+                          <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                          <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                          <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                      </ul>
+                  </li>
+              {% endfor %}
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
             <ul>
-                <?php
-                for ($i = 0; $i < count($projects); $i++) {
-                    echo printElement($projects[$i]);
-                }
-                ?>
+                {% for project in projects %}
+                    <li class="work-position">
+                        <h5>{{ project.title }}</h5>
+                        <p>{{ project.description }}</p>
+                        <p>{{ project.months }}</p>
+                        <strong>Achievements:</strong>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                            <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                            <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                        </ul>
+                    </li>
+                {% endfor %}
             </ul>
             <div class="project">
                 <h5>Project X</h5>
