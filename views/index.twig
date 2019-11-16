@@ -33,6 +33,9 @@
                 <ul>
                     {% for job in jobs %}
                         <li class="work-position">
+                            {% if job.image != "" %}
+                                <img src="/introduccionPhp/public/uploads/{{ job.image }}" width="50" height="50">
+                            {% endif %}
                             <h5>{{ job.title }}</h5>
                             <p>{{ job.description }}</p>
                             <p>{{ job.months }}</p>
