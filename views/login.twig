@@ -1,0 +1,10 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <form action="/introduccionPhp/auth" method="post" id="form-login">
+        <h1>Login</h1>
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}
