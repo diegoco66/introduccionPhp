@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 require_once  '../vendor/autoload.php';
 
+session_start();
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
 
@@ -43,27 +45,33 @@ $map->get('index', '/introduccionPhp/', [
 ]);
 $map->get('addJob', '/introduccionPhp/jobs/add', [
     'controller' => 'App\Controllers\JobsController',
-    'action' => 'getAddJobAction'
+    'action' => 'getAddJobAction',
+    'auth' => true
 ]);
 $map->post('saveJob', '/introduccionPhp/jobs/add', [
     'controller' => 'App\Controllers\JobsController',
-    'action' => 'getAddJobAction'
+    'action' => 'getAddJobAction',
+    'auth' => true
 ]);
 $map->get('addProject', '/introduccionPhp/projects/add', [
     'controller' => 'App\Controllers\ProjectsController',
-    'action' => 'getAddProjectAction'
+    'action' => 'getAddProjectAction',
+    'auth' => true
 ]);
 $map->post('saveProject', '/introduccionPhp/projects/add', [
     'controller' => 'App\Controllers\ProjectsController',
-    'action' => 'getAddProjectAction'
+    'action' => 'getAddProjectAction',
+    'auth' => true
 ]);
 $map->get('addUser', '/introduccionPhp/users/add', [
     'controller' => 'App\Controllers\UsersController',
-    'action' => 'getAddUserAction'
+    'action' => 'getAddUserAction',
+    'auth' => true
 ]);
 $map->post('saveUser', '/introduccionPhp/users/add', [
     'controller' => 'App\Controllers\UsersController',
-    'action' => 'getAddUserAction'
+    'action' => 'getAddUserAction',
+    'auth' => true
 ]);
 $map->get('loginForm', '/introduccionPhp/login', [
     'controller' => 'App\Controllers\AuthController',
@@ -72,6 +80,15 @@ $map->get('loginForm', '/introduccionPhp/login', [
 $map->post('auth', '/introduccionPhp/auth', [
     'controller' => 'App\Controllers\AuthController',
     'action' => 'postLogin'
+]);
+$map->get('admin', '/introduccionPhp/admin', [
+    'controller' => 'App\Controllers\AdminController',
+    'action' => 'getIndex',
+    'auth' => true
+]);
+$map->get('logout', '/introduccionPhp/logout', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'getLogout'
 ]);
 
 $matcher = $routerContainer->getMatcher();
@@ -97,6 +114,13 @@ if (!$route) {
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $actionName = $handlerData['action'];
+    $needsAuth = $handlerData['auth'] ?? false;
+
+    $sessionUserId = $_SESSION['userId'] ?? null;
+    if ($needsAuth && !$sessionUserId) {
+        echo 'Protected route';
+        die();
+    }
 
     $controller = new $controllerName;
     $response = $controller->$actionName($request);
